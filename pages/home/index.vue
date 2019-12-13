@@ -11,7 +11,7 @@
       </blockquote>
       <h1>{{ api }}</h1>
       <h1>{{ env }}</h1>
-      <h1>{{ error }}</h1>
+      <h1>{{ err }}</h1>
     </v-flex>
   </v-layout>
 </template>
@@ -23,22 +23,8 @@ export default {
     return {
       api: process.env.api || "Api not found so using Default",
       env: process.env.env || "Env not found so using Default",
-      error: ""
+      err: ""
     };
-  },
-  async mounted() {
-    // const token = this.$auth.$state;
-    const url = `http://localhost:3003/auth/login`;
-    try {
-      const response = await this.$axios.$get(url);
-      if (response.err) {
-        this.error = response.err;
-      } else {
-        this.error = response;
-      }
-    } catch (error) {
-      this.error = error;
-    }
   }
 };
 </script>

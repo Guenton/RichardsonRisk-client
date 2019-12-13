@@ -17,9 +17,9 @@ export default {
 
 <style>
 .KLPure {
-  width: 240px;
+  width: 220px;
   transform: rotateY(560deg);
-  animation: turn 3.5s ease-out forwards 1s;
+  animation: turn 1.5s ease-out forwards 1s;
 }
 
 @keyframes turn {

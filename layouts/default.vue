@@ -42,6 +42,12 @@
 
     <v-footer fixed app color="primary">
       <span>&copy; 2019 Maduro & Curiel's Bank N.V.</span>
+      <v-spacer />
+      <h4 class="mx-3">{{ fullName }}</h4>
+      <v-btn small color="secondary" @click="logout">
+        Logout
+        <v-icon>mdi-logout</v-icon>
+      </v-btn>
     </v-footer>
   </v-app>
 </template>
@@ -60,26 +66,37 @@ export default {
           to: "/home"
         },
         {
+          icon: "mdi-bank",
+          title: "Locations",
+          to: "/location"
+        },
+        {
           icon: "mdi-account",
-          title: "People",
-          to: "/emp"
+          title: "Users",
+          to: "/user"
         }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: "SIBOX"
+      title: "RichardsonRisk"
     };
   },
   computed: {
     flashButton() {
       return this.$store.state.dark ? "mdi-hexagon-outline" : "mdi-hexagon-slice-6";
+    },
+    fullName() {
+      return this.$store.state.auth.user.given_name + " " + this.$store.state.auth.user.family_name;
     }
   },
   methods: {
     swapTheme() {
       this.$store.commit("swapTheme");
       this.$vuetify.theme.dark = this.$store.state.dark;
+    },
+    logout() {
+      this.$router.push("/");
     }
   }
 };
