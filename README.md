@@ -1,10 +1,10 @@
-# sibox-client
+# RichardsonRisk-client
 
-> NuxtJs frontend for Sibox
+> NuxtJs frontend for RichardsonRisk
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 $ yarn install
 
@@ -20,4 +20,5 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-# sibox-client
+
+# RichardsonRisk-client
