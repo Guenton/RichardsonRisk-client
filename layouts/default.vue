@@ -96,7 +96,7 @@ export default {
       this.$vuetify.theme.dark = this.$store.state.dark;
     },
     logout() {
-      this.$router.push("/");
+      this.$auth.logout();
     }
   }
 };

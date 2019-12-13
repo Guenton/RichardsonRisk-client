@@ -57,15 +57,6 @@ export default {
       home: process.env.LOGIN_URL
     },
     strategies: {
-      local: {
-        endpoints: {
-          login: { url: "/auth/login", method: "post", propertyName: "token" },
-          logout: { url: "/auth/logout", method: "post" },
-          user: { url: "/auth/user", method: "get", propertyName: "user" }
-        },
-        tokenRequired: true,
-        tokenType: false
-      },
       auth0: {
         domain: process.env.AUTH0_DOMAIN,
         client_id: process.env.AUTH0_CLIENT_ID,

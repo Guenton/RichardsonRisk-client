@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO - Create "Add Location" on api -->
   <v-row class="mt-5">
     <v-col cols="12" sm="8" md="4">
       <v-card height="110px" elevation="3" to="/location/sub">
@@ -8,6 +9,7 @@
       </v-card>
     </v-col>
 
+    <!-- TODO - Dynamic list of cards pull from api -->
     <v-col cols="12" sm="8" md="4">
       <v-card height="110px" elevation="3" to="/location/building">
         <v-card-title>
