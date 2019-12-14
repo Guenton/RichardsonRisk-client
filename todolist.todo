@@ -1,11 +1,23 @@
-- Address Login Flicker on frontend page
-- Make Entry Sreen Reactive @done
-- Make heroku entry screen work with auth0
-- change favicon
-- Implement bypass if user confirmation was completed
-- Implement limited jwtAuthz routes on api
+- Login Screen Work
+  - Address Login Flicker on frontend page
+  - Implement bypass if user confirmation was completed @done
+- redeploy to heroku
+  - Make heroku entry screen work with auth0
+- Subsidiary work
+  - check access based on role
+  - create add subsidiary to server
+  - create pull subsidiaries from server
+- Theme Work
+  - Swap theme colors between dark and light
 
 Archive:
+- Theme Work @done
+  - Change Orange to Green in theme @done
+  - Fix error message handler @done
+  - Change Green to Purple in theme @done
+- Entry Screen work @done
+  - change favicon @done
+  - Make Entry Sreen Reactive @done
 - Check if userrights are sent to server in token @done
 -	a. check if userrights can be bound to rest api path with jwtAuthz @done
 -	b. check if frontend navigation can be limited with auth0 rights @done

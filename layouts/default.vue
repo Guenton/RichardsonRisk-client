@@ -43,8 +43,8 @@
     <v-footer fixed app color="primary">
       <span>&copy; 2019 Maduro & Curiel's Bank N.V.</span>
       <v-spacer />
-      <h4 class="mx-3">{{ fullName }}</h4>
-      <v-btn small color="secondary" @click="logout">
+      <span class="mx-3">{{ fullName }}</span>
+      <v-btn small color="accent" elevation="4" @click="logout">
         Logout
         <v-icon>mdi-logout</v-icon>
       </v-btn>
