@@ -65,17 +65,29 @@ export default {
     this.onLoad();
   },
   methods: {
-    onLoad() {
+    async onLoad() {
+      if (await this.userIsConfirmed()) this.$router.push("/home");
       this.form.firstname = this.$store.state.auth.user.given_name;
       this.form.lastname = this.$store.state.auth.user.family_name;
       this.form.email = this.$store.state.auth.user.email;
+    },
+    async userIsConfirmed() {
+      const url = process.env.api + "/auth/login";
+      try {
+        const response = await this.$axios.$get(url);
+        console.log(response);
+        return response;
+      } catch (err) {
+        this.err = err;
+        return false;
+      }
     },
     async confirm() {
       const url = process.env.api + "/auth/login";
       try {
         const response = await this.$axios.$post(url, this.form);
-        if (response.err) this.err = response.err;
-        else this.$router.push("/home");
+        this.err = response;
+        // this.$router.push("/home");
       } catch (err) {
         this.err = err;
       }

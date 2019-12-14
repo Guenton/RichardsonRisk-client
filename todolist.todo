@@ -1,4 +1,7 @@
 - Address Login Flicker on frontend page
+- Make Entry Sreen Reactive @done
+- Make heroku entry screen work with auth0
+- change favicon
 - Implement bypass if user confirmation was completed
 - Implement limited jwtAuthz routes on api
 
