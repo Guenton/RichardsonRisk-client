@@ -1,7 +1,11 @@
 <template>
   <v-content>
     <v-container>
-      <v-btn color="accent" to="/">Return to Main Page</v-btn>
+      <v-row>
+        <v-col cols="12" sm="5" md="4">
+          <v-btn block color="accent" to="/">Return to Main Page</v-btn>
+        </v-col>
+      </v-row>
       <v-row class="ma-3">
         <v-col cols="12">
           <v-card>
@@ -52,7 +56,11 @@
           </v-card>
         </v-col>
       </v-row>
-      <v-btn color="accent" to="/">Return to Main Page</v-btn>
+      <v-row>
+        <v-col cols="12" sm="5" md="4">
+          <v-btn block color="accent" to="/">Return to Main Page</v-btn>
+        </v-col>
+      </v-row>
     </v-container>
   </v-content>
 </template>
