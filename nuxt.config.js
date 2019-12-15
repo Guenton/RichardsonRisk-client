@@ -55,11 +55,13 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     "@nuxtjs/eslint-module",
     // Doc: https://auth.nuxtjs.org/guide/setup.html
-    "@nuxtjs/auth"
+    "@nuxtjs/auth",
+    // https://www.npmjs.com/package/@nuxtjs/proxy
+    "@nuxtjs/proxy"
   ],
   auth: {
     redirect: {
-      login: "/",
+      login: "/login",
       logout: "/",
       callback: "/login",
       home: "/login"
@@ -68,21 +70,26 @@ export default {
       auth0: {
         domain: process.env.AUTH0_DOMAIN,
         client_id: process.env.AUTH0_CLIENT_ID,
-        redirect_uri: process.env.LOGIN_URL,
+        // redirect_uri: process.env.LOGIN_URL,
         audience: process.env.AUTH0_AUDIENCE
       }
     }
   },
   env: {
     api: process.env.API_URL || "Api not found at Server Level",
-    env: process.env.APP_ENV || "Env not found at Server Level",
-    test: process.env.TEST_SHIZNIT || "Test Shiznit not found at Server Level"
+    baseUrl: process.env.BASE_URL || "http://localhost:3000"
   },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    "/auth/": "https://richardsonrisk-api.herokuapp.com",
+    "/api/": "https://richardsonrisk-api.herokuapp.com"
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module

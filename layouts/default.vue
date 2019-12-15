@@ -97,6 +97,7 @@ export default {
     },
     logout() {
       this.$auth.logout();
+      this.$router.push("/");
     }
   }
 };

@@ -45,6 +45,7 @@ export default {
   methods: {
     logout() {
       this.$auth.logout();
+      this.$router.push("/");
     },
     goBack() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
