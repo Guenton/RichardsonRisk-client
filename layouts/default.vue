@@ -87,7 +87,7 @@ export default {
       return this.$store.state.dark ? "mdi-hexagon-outline" : "mdi-hexagon-slice-6";
     },
     fullName() {
-      return this.$store.state.auth.user.given_name + " " + this.$store.state.auth.user.family_name;
+      return this.$store.getters.getFullname;
     }
   },
   methods: {

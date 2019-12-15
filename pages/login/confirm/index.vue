@@ -63,17 +63,15 @@ export default {
   },
   async mounted() {
     const user = await this.userExists();
-    this.$nextTick().then(() => {
-      if (!user) {
-        this.form.firstname = this.$store.state.auth.user.given_name;
-        this.form.lastname = this.$store.state.auth.user.family_name;
-        this.form.email = this.$store.state.auth.user.email;
-      } else {
-        this.form.firstname = user.firstname;
-        this.form.lastname = user.lastname;
-        this.form.email = user.email;
-      }
-    });
+    if (!user) {
+      this.form.firstname = this.$store.state.auth.user.given_name;
+      this.form.lastname = this.$store.state.auth.user.family_name;
+      this.form.email = this.$store.state.auth.user.email;
+    } else {
+      this.form.firstname = user.firstname;
+      this.form.lastname = user.lastname;
+      this.form.email = user.email;
+    }
   },
   methods: {
     async userExists() {
@@ -89,6 +87,8 @@ export default {
       const url = process.env.api + "/auth/login";
       try {
         await this.$axios.$post(url, this.form);
+        this.$store.commit("changeFirstname", this.form.firstname);
+        this.$store.commit("changeLastname", this.form.lastname);
         this.$router.push("/home");
       } catch (err) {
         this.err = err;
