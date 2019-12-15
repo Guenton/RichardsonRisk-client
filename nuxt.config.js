@@ -62,7 +62,7 @@ export default {
       login: "/",
       logout: "/",
       callback: "/login",
-      home: process.env.LOGIN_URL
+      home: "/login"
     },
     strategies: {
       auth0: {
