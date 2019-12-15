@@ -1,7 +1,3 @@
-- Login Screen Work
-  - Address Login Flicker on frontend page
-  - Implement bypass if user confirmation was completed @done
-  - Make User in Layout screen check db first @done
 - redeploy to heroku
   - Make heroku entry screen work with auth0
 - Subsidiary work
@@ -12,6 +8,10 @@
   - Swap theme colors between dark and light
 
 Archive:
+- Login Screen Work @done
+  - Address Login Flicker on frontend page @done
+  - Implement bypass if user confirmation was completed @done
+  - Make User in Layout screen check db first @done
 - Theme Work @done
   - Change Orange to Green in theme @done
   - Fix error message handler @done
