@@ -1,13 +1,17 @@
-- redeploy to heroku
-  - Make heroku entry screen work with auth0
 - Subsidiary work
   - check access based on role
   - create add subsidiary to server
   - create pull subsidiaries from server
+- Layout View Work
+  - Make default Layout screen look better on mobile
+- Confirmation Menu Work
+  - Change Width of The Confirmation menu
 - Theme Work
   - Swap theme colors between dark and light
 
 Archive:
+- redeploy to heroku @done
+  - Make heroku entry screen work with auth0 @done
 - Login Screen Work @done
   - Address Login Flicker on frontend page @done
   - Implement bypass if user confirmation was completed @done
