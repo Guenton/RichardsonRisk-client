@@ -1,11 +1,8 @@
-import colors from "vuetify/es5/util/colors";
+const colors = require("vuetify/es5/util/colors").default;
 require("dotenv").config();
 
 export default {
   mode: "universal",
-  /*
-   ** Headers of the page
-   */
   head: {
     titleTemplate: "%s - " + process.env.npm_package_name,
     title: process.env.npm_package_name || "",
@@ -28,25 +25,13 @@ export default {
       { rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#5bbad5" }
     ]
   },
-  /*
-   ** Customize the progress-bar color
-   */
+  // Customize the progress-bar color
   loading: { color: "#fff" },
-  /*
-   ** Global CSS
-   */
   css: [],
-  /*
-   ** Plugins to load before mounting the App
-   */
   plugins: [],
-  /*
-   ** Nuxt.js dev-modules
-   */
+  // Nuxt.js dev-modules
   buildModules: ["@nuxtjs/vuetify"],
-  /*
-   ** Nuxt.js modules
-   */
+  // Nuxt.js modules
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
@@ -70,7 +55,6 @@ export default {
       auth0: {
         domain: process.env.AUTH0_DOMAIN,
         client_id: process.env.AUTH0_CLIENT_ID,
-        // redirect_uri: process.env.LOGIN_URL,
         audience: process.env.AUTH0_AUDIENCE
       }
     }
@@ -84,11 +68,19 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
+    baseUrl: "https://richardsonrisk-api.herokuapp.com",
+    proxyHeaders: true,
     proxy: true
   },
   proxy: {
-    "/auth/": "https://richardsonrisk-api.herokuapp.com",
-    "/api/": "https://richardsonrisk-api.herokuapp.com"
+    "/auth/": {
+      target: "https://richardsonrisk-api.herokuapp.com",
+      changeOrigin: true
+    },
+    "/api/": {
+      target: "https://richardsonrisk-api.herokuapp.com",
+      changeOrigin: true
+    }
   },
   /*
    ** vuetify module configuration
@@ -120,13 +112,8 @@ export default {
       }
     }
   },
-  /*
-   ** Build configuration
-   */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
+    // You can extend webpack config here
     extend(config, ctx) {}
   }
 };
