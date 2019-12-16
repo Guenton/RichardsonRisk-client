@@ -5,7 +5,7 @@ export default {
   mode: "universal",
   head: {
     titleTemplate: "%s - " + process.env.npm_package_name,
-    title: process.env.npm_package_name || "",
+    title: "RichardsonRisk",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -59,24 +59,25 @@ export default {
       }
     }
   },
+  // Frontend accessible variables
+  // Remember api url and base url are the same
   env: {
-    api: process.env.API_URL || "Api not found at Server Level",
-    baseUrl: process.env.BASE_URL || "http://localhost:3000"
+    api: process.env.BASE_URL || "http://localhost:3003"
   },
   // Axios module configuration
   // See https://axios.nuxtjs.org/options
   axios: {
-    baseUrl: "https://richardsonrisk-api.herokuapp.com",
+    baseUrl: process.env.BASE_URL || "http://localhost:3003",
     proxyHeaders: true,
     proxy: true
   },
   proxy: {
     "/auth/": {
-      target: "https://richardsonrisk-api.herokuapp.com",
+      target: process.env.BASE_URL || "http://localhost:3003",
       changeOrigin: true
     },
     "/api/": {
-      target: "https://richardsonrisk-api.herokuapp.com",
+      target: process.env.BASE_URL || "http://localhost:3003",
       changeOrigin: true
     }
   },

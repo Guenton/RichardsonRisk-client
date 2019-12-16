@@ -1,7 +1,7 @@
 {
   "name": "richardsonrisk",
   "version": "1.0.0",
-  "description": "NuxtJs frontend for RichardsonRisk",
+  "description": "MCB Building Risk Assesment",
   "author": "Guenton Brooks",
   "private": true,
   "scripts": {
