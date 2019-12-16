@@ -9,22 +9,12 @@
           </small>
         </footer>
       </blockquote>
-      <h1>{{ api }}</h1>
-      <h1>{{ env }}</h1>
-      <h1>{{ err }}</h1>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
 export default {
-  auth: true,
-  data() {
-    return {
-      api: process.env.api || "Api not found so using Default",
-      env: process.env.env || "Env not found so using Default",
-      err: ""
-    };
-  }
+  auth: true
 };
 </script>
