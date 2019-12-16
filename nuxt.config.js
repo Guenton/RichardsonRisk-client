@@ -63,10 +63,8 @@ export default {
     api: process.env.API_URL || "Api not found at Server Level",
     baseUrl: process.env.BASE_URL || "http://localhost:3000"
   },
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
+  // Axios module configuration
+  // See https://axios.nuxtjs.org/options
   axios: {
     baseUrl: "https://richardsonrisk-api.herokuapp.com",
     proxyHeaders: true,
