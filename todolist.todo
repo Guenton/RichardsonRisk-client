@@ -2,14 +2,13 @@
   - check access based on role
   - create add subsidiary to server
   - create pull subsidiaries from server
-- Layout View Work
-  - Make default Layout screen look better on mobile
-- Confirmation Menu Work
-  - Change Width of The Confirmation menu
-- Theme Work
-  - Swap theme colors between dark and light
 
 Archive:
+- Layout View Work @done
+  - Make default Layout screen look better on mobile @done
+- Confirmation Menu Work @done
+  - Change Width of The Confirmation menu @done
+  - Make Confirmation Menu look better on mobile @done
 - redeploy to heroku @done
   - Make heroku entry screen work with auth0 @done
 - Login Screen Work @done

@@ -41,13 +41,18 @@
     </v-content>
 
     <v-footer fixed app color="primary">
-      <span>&copy; 2019 Maduro & Curiel's Bank N.V.</span>
-      <v-spacer />
-      <span class="mx-3">{{ fullName }}</span>
-      <v-btn small color="accent" elevation="4" @click="logout">
-        Logout
-        <v-icon>mdi-logout</v-icon>
-      </v-btn>
+      <v-row justify="space-between" align="center">
+        <v-col cols="12" sm="6" class="py-1 text-start">
+          &copy; 2019 Maduro & Curiel's Bank N.V.
+        </v-col>
+        <v-col cols="12" sm="6" class="text-right pa-1">
+          {{ fullName }}
+          <v-btn small class="ml-3" color="accent" elevation="4" @click="logout">
+            Logout
+            <v-icon>mdi-logout</v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-footer>
   </v-app>
 </template>
