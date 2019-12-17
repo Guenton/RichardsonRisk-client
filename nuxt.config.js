@@ -55,9 +55,13 @@ export default {
       auth0: {
         domain: process.env.AUTH0_DOMAIN,
         client_id: process.env.AUTH0_CLIENT_ID,
-        audience: process.env.AUTH0_AUDIENCE
+        audience: process.env.AUTH0_AUDIENCE,
+        redirect_uri: process.env.AUTH0_REDIRECT_URI
       }
     }
+  },
+  router: {
+    middleware: ["auth"]
   },
   // Frontend accessible variables
   // Remember api url and base url are the same

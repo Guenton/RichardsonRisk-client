@@ -44,7 +44,6 @@
 
 <script>
 export default {
-  auth: true,
   layout: "splash",
   data() {
     return {

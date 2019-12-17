@@ -4,7 +4,6 @@
 
 <script>
 export default {
-  auth: true,
   layout: "splash",
   async mounted() {
     const url = process.env.api + "/auth/login";

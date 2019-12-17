@@ -14,7 +14,5 @@
 </template>
 
 <script>
-export default {
-  auth: true
-};
+export default {};
 </script>
