@@ -1,10 +1,10 @@
 - Subsidiary work
-  - check access based on role
+  - check access based on role will handle on server @done
   - create add subsidiary to server @done
   - create validation for add subsidiary form @done
   - create pull subsidiaries from server
-- Default Layout
-  - React to "null" values in user name
+- Default Layout @done
+  - React to "null" values in user name system should auto reboot @done
   - fix auth user info @done
 - Alert system
   - add err Alert to vuex store

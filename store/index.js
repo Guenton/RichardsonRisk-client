@@ -3,12 +3,17 @@ export const state = () => ({
   user: {
     firstname: null,
     lastname: null
-  }
+  },
+  err: null
 });
 
 export const getters = {
   getFullname(state) {
     return state.user.firstname + " " + state.user.lastname;
+  },
+  hasErr(state) {
+    if (state.err) return true;
+    else return false;
   }
 };
 
@@ -21,5 +26,11 @@ export const mutations = {
   },
   changeLastname(state, lastname) {
     state.user.lastname = lastname;
+  },
+  setErr(state, err) {
+    state.err = err;
+  },
+  clearErr(state) {
+    state.err = null;
   }
 };

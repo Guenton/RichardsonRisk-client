@@ -42,7 +42,6 @@
           <v-card-actions>
             <v-btn block color="secondary" :disabled="!validForm" @click="submit">Submit</v-btn>
           </v-card-actions>
-          <v-alert v-show="err.length > 1" type="error">{{ err }}</v-alert>
         </v-card>
       </v-col>
     </v-row>
@@ -73,8 +72,7 @@ export default {
           v => !!v || "Location is required",
           v => v.length >= 3 || "Location must at least 3 characters"
         ]
-      },
-      err: ""
+      }
     };
   },
   methods: {
@@ -82,9 +80,10 @@ export default {
       const url = process.env.api + "/api/sub";
       try {
         await this.$axios.$post(url, this.form);
-        // this.$router.push("/location/sub");
+        this.$router.push("/location/sub");
       } catch (err) {
-        this.err = err;
+        this.$store.commit("setErr", err);
+        this.$router.push("/location/sub");
       }
     }
   }
