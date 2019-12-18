@@ -1,10 +1,10 @@
 <template>
-  <v-container>
+  <v-content class="py-4 px-0">
     <v-row justify="center" align="center" class="mx-0">
       <v-col cols="12" sm="7" md="6" lg="4">
         <v-card class="elevation-12">
           <v-toolbar color="secondary" dark flat>
-            <v-toolbar-title>Create New Subsidiary</v-toolbar-title>
+            <v-toolbar-title>Edit Subsidiary</v-toolbar-title>
             <v-spacer />
             <v-icon>mdi-city</v-icon>
           </v-toolbar>
@@ -41,18 +41,30 @@
           </v-card-text>
           <v-card-actions>
             <v-row>
-              <v-col cols="6">
-                <v-btn block color="acent" @click="cancel">Cancel</v-btn>
+              <v-col cols="5" class="pr-1">
+                <v-btn block @click="cancel">Cancel</v-btn>
               </v-col>
-              <v-col cols="6">
+              <v-col cols="5" class="pl-1">
                 <v-btn block color="secondary" :disabled="!validForm" @click="submit">Submit</v-btn>
+              </v-col>
+              <v-col cols="2">
+                <v-btn block color="error" @click="confirmOverlay = true">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
               </v-col>
             </v-row>
           </v-card-actions>
         </v-card>
       </v-col>
+      <v-overlay absolute opacity="0.8" :value="confirmOverlay">
+        <v-btn class="mr-5" @click="confirmOverlay = false">Cancel</v-btn>
+        <v-btn color="error" @click="deleteSub">
+          <v-icon>mdi-delete</v-icon>
+          Confirm
+        </v-btn>
+      </v-overlay>
     </v-row>
-  </v-container>
+  </v-content>
 </template>
 
 <script>
@@ -60,6 +72,7 @@ export default {
   data() {
     return {
       validForm: true,
+      confirmOverlay: false,
       form: {
         name: "",
         shorthand: "",
@@ -82,11 +95,33 @@ export default {
       }
     };
   },
+  async mounted() {
+    const sub = this.$route.params.sub;
+    const url = process.env.api + `/api/sub?sub=${sub}`;
+    try {
+      const sub = await this.$axios.$get(url);
+      this.form = sub;
+    } catch (err) {
+      this.$store.commit("setErr", err);
+      this.$router.push("/location/sub");
+    }
+  },
   methods: {
     async submit() {
       const url = process.env.api + "/api/sub";
       try {
-        await this.$axios.$post(url, this.form);
+        await this.$axios.$put(url, this.form);
+        this.$router.push("/location/sub");
+      } catch (err) {
+        this.$store.commit("setErr", err);
+        this.$router.push("/location/sub");
+      }
+    },
+    async deleteSub() {
+      const id = this.form._id;
+      const url = process.env.api + `/api/sub?id=${id}`;
+      try {
+        await this.$axios.$delete(url, this.form);
         this.$router.push("/location/sub");
       } catch (err) {
         this.$store.commit("setErr", err);

@@ -92,7 +92,9 @@ export default {
       return this.$store.state.dark ? "mdi-hexagon-outline" : "mdi-hexagon-slice-6";
     },
     fullName() {
-      return this.$store.getters.getFullname;
+      if (this.$store.getters.getFullname === null + " " + null) {
+        return "Please Login Again";
+      } else return this.$store.getters.getFullname;
     }
   },
   methods: {
