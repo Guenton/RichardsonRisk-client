@@ -45,8 +45,9 @@ export default {
     "@nuxtjs/proxy"
   ],
   auth: {
+    resetOnError: true,
     redirect: {
-      login: "/login",
+      login: "/",
       logout: "/",
       callback: "/login",
       home: "/login"

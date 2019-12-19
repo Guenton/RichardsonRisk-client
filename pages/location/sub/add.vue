@@ -9,7 +9,7 @@
             <v-icon>mdi-city</v-icon>
           </v-toolbar>
           <v-card-text>
-            <v-form v-model="validForm">
+            <v-form v-model="validForm" @submit="submit">
               <v-text-field
                 v-model="form.name"
                 :rules="rules.name"

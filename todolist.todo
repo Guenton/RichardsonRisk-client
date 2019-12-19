@@ -1,4 +1,17 @@
-
+- Add submit handler to forms -will figure out later @done
+- Buildings work
+  - Create Dropdown to Sort Buildings by Subsidiary
+  - Create Dropdown to Sort Buildings by Type
+  - Create Add Buildings Form @done
+  - Create Delete Buildings @done
+  - Create Update Buildings @done
+  - Create Get Buildings from DB @done
+- Survey Work
+  - Hardcode Survey to DB
+  - Create Survey Form Template
+    - include Dropdown for Type, Subsidiary, and Branch
+  - Hardcode Scoring Calculator
+  - Store Survey Results in DB
 
 Archive:
 - Alert system @done
