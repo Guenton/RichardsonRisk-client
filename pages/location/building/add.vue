@@ -88,18 +88,21 @@ export default {
       subs: []
     };
   },
-  async mounted() {
-    const url = process.env.api + "/api/sub";
-    try {
-      const subs = await this.$axios.$get(url);
-      subs.forEach(sub => {
-        this.subs.push(sub.shorthand);
-      });
-    } catch (err) {
-      this.$store.commit("setErr", err);
-    }
+  mounted() {
+    this.getSubs();
   },
   methods: {
+    async getSubs() {
+      const url = process.env.api + "/api/sub";
+      try {
+        const subs = await this.$axios.$get(url);
+        subs.forEach(sub => {
+          this.subs.push(sub.shorthand);
+        });
+      } catch (err) {
+        this.$store.commit("setErr", err);
+      }
+    },
     async submit() {
       const url = process.env.api + "/api/building";
       try {

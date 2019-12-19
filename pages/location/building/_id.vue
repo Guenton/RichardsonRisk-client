@@ -101,22 +101,32 @@ export default {
       subs: []
     };
   },
-  async mounted() {
-    const id = this.$route.params.id;
-    const subUrl = process.env.api + "/api/sub";
-    const url = process.env.api + `/api/building?id=${id}`;
-    try {
-      const subs = await this.$axios.$get(subUrl);
-      subs.forEach(sub => {
-        this.subs.push(sub.shorthand);
-      });
-      this.form = await this.$axios.$get(url);
-    } catch (err) {
-      this.$store.commit("setErr", err);
-      this.$router.push("/location/building");
-    }
+  mounted() {
+    this.getSubs();
+    this.populateForm();
   },
   methods: {
+    async getSubs() {
+      const url = process.env.api + "/api/sub";
+      try {
+        const subs = await this.$axios.$get(url);
+        subs.forEach(sub => {
+          this.subs.push(sub.shorthand);
+        });
+      } catch (err) {
+        this.$store.commit("setErr", err);
+      }
+    },
+    async populateForm() {
+      const id = this.$route.params.id;
+      const url = process.env.api + `/api/building?id=${id}`;
+      try {
+        this.form = await this.$axios.$get(url);
+      } catch (err) {
+        this.$store.commit("setErr", err);
+        this.$router.push("/location/building");
+      }
+    },
     async submit() {
       const url = process.env.api + "/api/building";
       try {

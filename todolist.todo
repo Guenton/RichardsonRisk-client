@@ -1,19 +1,20 @@
-- Add submit handler to forms -will figure out later @done
-- Buildings work
-  - Create Dropdown to Sort Buildings by Subsidiary
-  - Create Dropdown to Sort Buildings by Type
-  - Create Add Buildings Form @done
-  - Create Delete Buildings @done
-  - Create Update Buildings @done
-  - Create Get Buildings from DB @done
 - Survey Work
   - Hardcode Survey to DB
   - Create Survey Form Template
     - include Dropdown for Type, Subsidiary, and Branch
   - Hardcode Scoring Calculator
   - Store Survey Results in DB
+- Create Dropdown to Sort Buildings by type -deprioritized
+- Create color coding for building types -deprioritized
 
 Archive:
+- Add submit handler to forms -will figure out later @done
+- Buildings work @done
+  - Create Dropdown to Sort Buildings by Subsidiary @done
+  - Create Add Buildings Form @done
+  - Create Delete Buildings @done
+  - Create Update Buildings @done
+  - Create Get Buildings from DB @done
 - Alert system @done
   - add err Alert to vuex store @done
   - read err alert from vuex store on elegible page @done

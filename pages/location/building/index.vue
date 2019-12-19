@@ -12,6 +12,20 @@
         </v-alert>
       </v-col>
     </v-row>
+    <v-row align="center" justify="end">
+      <v-col cols="12" sm="6" md="4">
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn block color="secondary" dark v-on="on">Sort by Subsidiary</v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-for="(sub, i) in subs" :key="i" @click="getBuildings(sub)">
+              <v-list-item-title>{{ sub }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col cols="12" sm="6" md="4">
         <v-card height="110px" elevation="3" to="/location/building/add">
@@ -40,7 +54,9 @@
 export default {
   data() {
     return {
-      buildings: []
+      buildings: [],
+      subs: [],
+      types: ["Cash", "Office", "Miscellaneous"]
     };
   },
   computed: {
@@ -52,9 +68,21 @@ export default {
     }
   },
   mounted() {
+    this.getSubs();
     this.getBuildings();
   },
   methods: {
+    async getSubs() {
+      const url = process.env.api + "/api/sub";
+      try {
+        const subs = await this.$axios.$get(url);
+        subs.forEach(sub => {
+          this.subs.push(sub.shorthand);
+        });
+      } catch (err) {
+        this.$store.commit("setErr", err);
+      }
+    },
     async getBuildings(sub) {
       const url = sub
         ? process.env.api + `/api/building?sub=${sub}`

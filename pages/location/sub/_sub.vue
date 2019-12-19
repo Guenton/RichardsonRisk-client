@@ -95,17 +95,20 @@ export default {
       }
     };
   },
-  async mounted() {
-    const sub = this.$route.params.sub;
-    const url = process.env.api + `/api/sub?sub=${sub}`;
-    try {
-      this.form = await this.$axios.$get(url);
-    } catch (err) {
-      this.$store.commit("setErr", err);
-      this.$router.push("/location/sub");
-    }
+  mounted() {
+    this.populateForm();
   },
   methods: {
+    async populateForm() {
+      const sub = this.$route.params.sub;
+      const url = process.env.api + `/api/sub?sub=${sub}`;
+      try {
+        this.form = await this.$axios.$get(url);
+      } catch (err) {
+        this.$store.commit("setErr", err);
+        this.$router.push("/location/sub");
+      }
+    },
     async submit() {
       const url = process.env.api + "/api/sub";
       try {
