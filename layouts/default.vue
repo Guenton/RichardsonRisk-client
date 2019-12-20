@@ -26,6 +26,14 @@
 
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
+          <v-btn icon to="/assessment/add" v-on="on">
+            <v-icon>mdi-file-document-box-plus</v-icon>
+          </v-btn>
+        </template>
+        <span>Create New Assignment</span>
+      </v-tooltip>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
           <v-btn icon v-on="on" @click.stop="swapTheme()">
             <v-icon>{{ flashButton }}</v-icon>
           </v-btn>
@@ -79,6 +87,11 @@ export default {
           icon: "mdi-account",
           title: "Users",
           to: "/user"
+        },
+        {
+          icon: "mdi-file-document-box-multiple",
+          title: "Assessments",
+          to: "/assessment"
         }
       ],
       miniVariant: false,
@@ -89,7 +102,7 @@ export default {
   },
   computed: {
     flashButton() {
-      return this.$store.state.dark ? "mdi-hexagon-outline" : "mdi-hexagon-slice-6";
+      return this.$store.state.dark ? "mdi-hexagon-slice-6" : "mdi-hexagon-outline";
     },
     fullName() {
       if (this.$store.getters.getFullname === null + " " + null) {

@@ -19,7 +19,7 @@
             <v-btn block color="secondary" dark v-on="on">Sort by Subsidiary</v-btn>
           </template>
           <v-list>
-            <v-list-item v-for="(sub, i) in subs" :key="i" @click="getBuildings(sub)">
+            <v-list-item v-for="(sub, i) in subs" :key="i" @click="getAssessments(sub)">
               <v-list-item-title>{{ sub }}</v-list-item-title>
             </v-list-item>
           </v-list>
@@ -28,21 +28,21 @@
     </v-row>
     <v-row>
       <v-col cols="12" sm="6" md="4">
-        <v-card height="110px" elevation="3" to="/location/building/add">
+        <v-card height="110px" elevation="3" to="/assessment/add">
           <v-row justify="center" align="center" class="fill-height">
             <v-icon x-large color="primary">mdi-plus</v-icon>
           </v-row>
         </v-card>
       </v-col>
 
-      <template v-for="building in buildings">
-        <v-col :key="building._id" cols="12" sm="6" md="4">
-          <v-card height="110px" elevation="3" :to="'/location/building/' + building._id">
+      <template v-for="assessment in assessments">
+        <v-col :key="assessment._id" cols="12" sm="6" md="4">
+          <v-card height="110px" elevation="3" :to="'/assessment/' + assessment._id">
             <v-card-title>
               <v-icon color="primary">mdi-bank</v-icon>
-              <span class="mx-1">{{ building.name }}</span>
+              <span class="mx-1">{{ assessment.building }} - {{ assessment.score }}</span>
             </v-card-title>
-            <v-card-text>{{ building.subsidiary }} - {{ building.address }}</v-card-text>
+            <v-card-text>{{ assessment.subsidiary }} - {{ assessment.date }}</v-card-text>
           </v-card>
         </v-col>
       </template>
@@ -54,7 +54,7 @@
 export default {
   data() {
     return {
-      buildings: [],
+      assessments: [],
       subs: []
     };
   },
@@ -68,7 +68,7 @@ export default {
   },
   mounted() {
     this.getSubs();
-    this.getBuildings();
+    this.getAssessments();
   },
   methods: {
     async getSubs() {
@@ -82,13 +82,13 @@ export default {
         this.$store.commit("setErr", err);
       }
     },
-    async getBuildings(sub) {
+    async getAssessments(sub) {
       const url = sub
-        ? process.env.api + `/api/building?sub=${sub}`
-        : process.env.api + "/api/building";
+        ? process.env.api + `/api/assessment?sub=${sub}`
+        : process.env.api + "/api/assessment";
       try {
-        const buildings = await this.$axios.$get(url);
-        this.buildings = buildings;
+        const assessments = await this.$axios.$get(url);
+        this.assessments = assessments;
       } catch (err) {
         this.$store.commit("setErr", err);
       }
