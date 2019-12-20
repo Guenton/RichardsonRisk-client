@@ -212,11 +212,16 @@
           </v-card-text>
           <v-card-actions>
             <v-row>
-              <v-col cols="6">
+              <v-col cols="5">
                 <v-btn block color="acent" @click="cancel">Cancel</v-btn>
               </v-col>
-              <v-col cols="6">
-                <v-btn block color="secondary" :disabled="!validForm" @click="submit">Submit</v-btn>
+              <v-col cols="5">
+                <v-btn block color="secondary" :disabled="!validForm" @click="submit">Adjust</v-btn>
+              </v-col>
+              <v-col cols="2">
+                <v-btn block color="error" @click="confirmOverlay = true">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
               </v-col>
             </v-row>
           </v-card-actions>
@@ -236,14 +241,35 @@
             <v-row class="mt-2 hidden-sm-and-down">
               <v-col cols="12">
                 <p>
-                  So far according to this assessment <b>{{ form.building.name }}</b> is a
-                  <b>{{ riskCategory }}</b> building.
+                  <b>{{ form.building.name }}</b> is a <b>{{ riskCategory }}</b> building according
+                  to this assessment
+                </p>
+              </v-col>
+            </v-row>
+            <v-row class="hidden-sm-and-down">
+              <v-col cols="12">
+                Assessment Created on:
+                <p>
+                  <b>{{ dateCreated }}</b>
+                </p>
+              </v-col>
+              <v-col cols="12">
+                Assessment Last Modified on:
+                <p>
+                  <b>{{ dateUpdated }}</b>
                 </p>
               </v-col>
             </v-row>
           </v-card-text>
         </v-card>
       </v-col>
+      <v-overlay absolute opacity="0.8" :value="confirmOverlay">
+        <v-btn class="mr-5" @click="confirmOverlay = false">Cancel</v-btn>
+        <v-btn color="error" @click="deleteAssessment">
+          <v-icon>mdi-delete</v-icon>
+          Confirm
+        </v-btn>
+      </v-overlay>
     </v-row>
   </v-container>
 </template>
@@ -253,6 +279,7 @@ export default {
   data() {
     return {
       validForm: true,
+      confirmOverlay: false,
       subSelected: false,
       form: {
         subsidiary: "",
@@ -328,10 +355,17 @@ export default {
       if (this.form.totalScore < 30) return "info";
       else if (this.form.totalScore < 45) return "warning";
       else return "error";
+    },
+    dateCreated() {
+      return new Date(this.form.dateCreated);
+    },
+    dateUpdated() {
+      return new Date(this.form.dateUpdated);
     }
   },
   mounted() {
     this.getSubs();
+    this.populateForm();
   },
   methods: {
     async getSubs() {
@@ -340,6 +374,16 @@ export default {
         this.subs = await this.$axios.$get(url);
       } catch (err) {
         this.$store.commit("setErr", err);
+      }
+    },
+    async populateForm() {
+      const id = this.$route.params.id;
+      const url = process.env.api + `/api/assessment?id=${id}`;
+      try {
+        this.form = await this.$axios.$get(url);
+      } catch (err) {
+        this.$store.commit("setErr", err);
+        this.$router.push("/assessment");
       }
     },
     async getBuildings() {
@@ -382,7 +426,18 @@ export default {
     async submit() {
       const url = process.env.api + "/api/assessment";
       try {
-        await this.$axios.$post(url, this.form);
+        await this.$axios.$put(url, this.form);
+        this.$router.push("/assessment");
+      } catch (err) {
+        this.$store.commit("setErr", err);
+        this.$router.push("/assessment");
+      }
+    },
+    async deleteAssessment() {
+      const id = this.form._id;
+      const url = process.env.api + `/api/assessment?id=${id}`;
+      try {
+        await this.$axios.$delete(url, this.form);
         this.$router.push("/assessment");
       } catch (err) {
         this.$store.commit("setErr", err);

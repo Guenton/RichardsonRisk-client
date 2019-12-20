@@ -145,7 +145,7 @@ export default {
         this.$router.push("/location/building");
       } catch (err) {
         this.$store.commit("setErr", err);
-        this.$router.push("/location/buildinvg");
+        this.$router.push("/location/building");
       }
     },
     cancel() {

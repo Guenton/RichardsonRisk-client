@@ -35,14 +35,14 @@
         </v-card>
       </v-col>
 
-      <template v-for="assessment in assessments">
+      <template v-for="(assessment, i) in assessments">
         <v-col :key="assessment._id" cols="12" sm="6" md="4">
           <v-card height="110px" elevation="3" :to="'/assessment/' + assessment._id">
             <v-card-title>
-              <v-icon color="primary">mdi-bank</v-icon>
-              <span class="mx-1">{{ assessment.building }} - {{ assessment.score }}</span>
+              <v-icon color="primary">mdi-file-document-box</v-icon>
+              <span class="mx-1">{{ assessment.building.name }} - {{ assessment.totalScore }}</span>
             </v-card-title>
-            <v-card-text>{{ assessment.subsidiary }} - {{ assessment.date }}</v-card-text>
+            <v-card-text>{{ assessment.subsidiary }} - {{ dateCreated(i) }}</v-card-text>
           </v-card>
         </v-col>
       </template>
@@ -92,6 +92,9 @@ export default {
       } catch (err) {
         this.$store.commit("setErr", err);
       }
+    },
+    dateCreated(i) {
+      return new Date(this.assessments[i].dateCreated);
     },
     clearErr() {
       this.$store.commit("clearErr");

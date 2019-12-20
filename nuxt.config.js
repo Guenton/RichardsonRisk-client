@@ -47,7 +47,7 @@ export default {
   auth: {
     resetOnError: true,
     redirect: {
-      login: "/",
+      login: "/login",
       logout: "/",
       callback: "/login",
       home: "/login"

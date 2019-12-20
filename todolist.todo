@@ -1,13 +1,15 @@
-- Survey Work
-  - Hardcode Survey to DB
-  - Create Survey Form Template
-    - include Dropdown for Type, Subsidiary, and Branch
-  - Hardcode Scoring Calculator
-  - Store Survey Results in DB
 - Create Dropdown to Sort Buildings by type -deprioritized
 - Create color coding for building types -deprioritized
 
 Archive:
+- Survey Work @done
+  - Hardcode Survey to DB - made form on client @done
+  - Create Survey Form Template @done
+    - include Dropdown for Type, Subsidiary, and Branch @done
+  - Hardcode Scoring Calculator @done
+  - Store Survey Results in DB @done
+- Do not show loginConfirm again after confirming @done
+- SOLVED LOGIN FLICKER!!! @done
 - Add submit handler to forms -will figure out later @done
 - Buildings work @done
   - Create Dropdown to Sort Buildings by Subsidiary @done
